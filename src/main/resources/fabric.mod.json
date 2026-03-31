@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "biomes-were-already-plenty",
+  "version": "${version}",
+  "name": "Biomes Were Already Plenty",
+  "description": "Stops the Anomaly block from Biomes O' Plenty flickering and tanking your fps",
+  "authors": [
+    "SadCryingDuck"
+  ],
+  "license": "GPL-3.0-only",
+  "icon": "assets/biomes-were-already-plenty/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      {
+        "value": "biomeswerealreadyplenty.BwapClient",
+        "adapter": "kotlin"
+      }
+    ],
+    "modmenu": [
+      {
+        "value": "biomeswerealreadyplenty.BwapModMenuIntegration",
+        "adapter": "kotlin"
+      }
+    ]
+  },
+  "mixins": [
+    {
+      "config": "biomes-were-already-plenty.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.4",
+    "minecraft": ">=1.21.1 <1.22",
+    "java": ">=21",
+    "fabric-api": "*",
+    "fabric-language-kotlin": "*",
+    "cloth-config": "*"
+  },
+  "suggests": {
+    "modmenu": "*",
+    "biomesoplenty": "*"
+  }
+}

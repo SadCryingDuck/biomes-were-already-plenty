@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.biomes-were-already-plenty.title": "Biomes Were Already Plenty",
+  "text.autoconfig.biomes-were-already-plenty.option.fixAnomalyFlickering": "Fix Anomaly Block Flickering",
+  "text.autoconfig.biomes-were-already-plenty.option.fixAnomalyFlickering.@Tooltip": "Stops the Anomaly block cycling through random block states, fixing the FPS drops.",
+  "text.autoconfig.biomes-were-already-plenty.option.freezeAnomalyTexture": "Freeze Anomaly Texture",
+  "text.autoconfig.biomes-were-already-plenty.option.freezeAnomalyTexture.@Tooltip": "Freezes the Anomaly texture on the first frame. Requires F3+T to take effect"
+}
