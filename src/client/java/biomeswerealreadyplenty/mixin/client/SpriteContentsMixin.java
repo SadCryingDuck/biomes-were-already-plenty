@@ -1,6 +1,8 @@
 package biomeswerealreadyplenty.mixin.client;
 
 import biomeswerealreadyplenty.BwapClient;
+//? if >=1.21.11
+//import biomeswerealreadyplenty.FrozenAnimation;
 import net.minecraft.client.renderer.texture.SpriteContents;
 //? if <1.21.11
 import net.minecraft.client.renderer.texture.SpriteTicker;
@@ -18,10 +20,10 @@ public abstract class SpriteContentsMixin {
     public abstract ResourceLocation name();
 
     //? if >=1.21.11 {
-    /*@Inject(method = "isAnimated", at = @At("HEAD"), cancellable = true)
-    private void bwap$freezeAnomalyTexture(CallbackInfoReturnable<Boolean> cir) {
-        if (bwap$isFrozen()) {
-            cir.setReturnValue(false);
+    /*@Inject(method = "createAnimationState", at = @At("RETURN"))
+    private void bwap$freezeAnomalyTexture(CallbackInfoReturnable<SpriteContents.AnimationState> cir) {
+        if (cir.getReturnValue() != null && bwap$isFrozen()) {
+            ((FrozenAnimation) (Object) cir.getReturnValue()).bwap$freeze();
         }
     }
     *///?} else {
@@ -34,7 +36,7 @@ public abstract class SpriteContentsMixin {
     //?}
 
     private boolean bwap$isFrozen() {
-        if (!BwapClient.getConfig().getFreezeAnomalyTexture()) {
+        if (!BwapClient.getConfig().freezeAnomalyTexture) {
             return false;
         }
         ResourceLocation name = this.name();

@@ -17,16 +17,10 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      {
-        "value": "biomeswerealreadyplenty.BwapClient",
-        "adapter": "kotlin"
-      }
+      "biomeswerealreadyplenty.BwapClient"
     ],
     "modmenu": [
-      {
-        "value": "biomeswerealreadyplenty.BwapModMenuIntegration",
-        "adapter": "kotlin"
-      }
+      "biomeswerealreadyplenty.BwapModMenuIntegration"
     ]
   },
   "mixins": [
@@ -40,7 +34,6 @@
     "minecraft": "${minecraft}",
     "java": ">=${java}",
     "fabric-api": "*",
-    "fabric-language-kotlin": "*",
     "cloth-config": "*"
   },
   "suggests": {

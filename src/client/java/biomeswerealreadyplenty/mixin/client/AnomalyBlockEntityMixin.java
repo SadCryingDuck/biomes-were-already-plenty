@@ -16,7 +16,7 @@ public class AnomalyBlockEntityMixin {
 
     @Inject(method = "getRenderState", at = @At("HEAD"), cancellable = true, require = 0, remap = false)
     private void bwap$returnStableState(CallbackInfoReturnable<BlockState> cir) {
-        if (BwapClient.getConfig().getFixAnomalyFlickering()) {
+        if (BwapClient.getConfig().fixAnomalyFlickering) {
             cir.setReturnValue(bwap$stableState(((BlockEntity) (Object) this).getBlockState()));
         }
     }
