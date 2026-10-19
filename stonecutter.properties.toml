@@ -5,9 +5,31 @@ mod.version = "1.0.0"
 loomx.loom_version = "1.18-SNAPSHOT"
 deps.fabric_loader = "0.18.5"
 deps.fabric_kotlin = "1.13.10+kotlin.2.3.20"
+deps.nightconfig = "3.6.7"
+deps.typetools = "0.6.3"
+
+["1.20.1"]
+mod.mc_compat = "1.20.1"
+mod.mc_releases = ["1.20.1"]
+deps.fabric_api = "0.92.12+1.20.1"
+deps.cloth_config = "11.1.136"
+deps.modmenu = "7.2.2"
+deps.biomesoplenty = "eZaag2ca"
+deps.glitchcore = "25HLOiOl"
+deps.terrablender = "kmob8AJ4"
+
+["1.21"]
+mod.mc_compat = "1.21"
+mod.mc_releases = ["1.21"]
+deps.fabric_api = "0.102.0+1.21"
+deps.cloth_config = "15.0.140"
+deps.modmenu = "11.0.5"
+deps.biomesoplenty = "qAKuAKD7"
+deps.glitchcore = "2zGz6n4Q"
+deps.terrablender = "N1JhLbFM"
 
 ["1.21.1"]
-mod.mc_compat = ">=1.21.1 <1.22"
+mod.mc_compat = "1.21.1"
 mod.mc_releases = ["1.21.1"]
 deps.fabric_api = "0.116.9+1.21.1"
 deps.cloth_config = "15.0.140"
@@ -15,5 +37,93 @@ deps.modmenu = "11.0.4"
 deps.biomesoplenty = "fhyqphwv"
 deps.glitchcore = "sux8kYHe"
 deps.terrablender = "XNtIBXyQ"
-deps.nightconfig = "3.6.7"
-deps.typetools = "0.6.3"
+
+["1.21.3"]
+mod.mc_compat = "1.21.3"
+mod.mc_releases = ["1.21.3"]
+deps.fabric_api = "0.114.1+1.21.3"
+deps.cloth_config = "16.0.143"
+deps.modmenu = "12.0.1"
+deps.biomesoplenty = "kmGyl9N2"
+deps.glitchcore = "WT3yZtYB"
+deps.terrablender = "73WfNXvd"
+
+["1.21.4"]
+mod.mc_compat = "1.21.4"
+mod.mc_releases = ["1.21.4"]
+deps.fabric_api = "0.119.4+1.21.4"
+deps.cloth_config = "17.0.144"
+deps.modmenu = "13.0.4"
+deps.biomesoplenty = "1hMDdKWQ"
+deps.glitchcore = "gBxcKjMS"
+deps.terrablender = "BVtalJ0e"
+
+["1.21.5"]
+mod.mc_compat = "1.21.5"
+mod.mc_releases = ["1.21.5"]
+deps.fabric_api = "0.128.2+1.21.5"
+deps.cloth_config = "18.0.145"
+deps.modmenu = "14.0.2"
+deps.biomesoplenty = "Vfsy0Fue"
+deps.glitchcore = "u82FWCHx"
+deps.terrablender = "pQBPM9gU"
+
+["1.21.6"]
+mod.mc_compat = "1.21.6"
+mod.mc_releases = ["1.21.6"]
+deps.fabric_api = "0.128.2+1.21.6"
+deps.cloth_config = "19.0.147"
+deps.modmenu = "15.0.2"
+deps.biomesoplenty = "wP1awnlB"
+deps.glitchcore = "uac4Zk8Z"
+deps.terrablender = "oYa23EZD"
+
+["1.21.7"]
+mod.mc_compat = "1.21.7"
+mod.mc_releases = ["1.21.7"]
+deps.fabric_api = "0.129.0+1.21.7"
+deps.cloth_config = "19.0.147"
+deps.modmenu = "15.0.2"
+deps.biomesoplenty = "dOjJcaek"
+deps.glitchcore = "ii4uvqS9"
+deps.terrablender = "mQ8VUxgm"
+
+["1.21.8"]
+mod.mc_compat = "1.21.8"
+mod.mc_releases = ["1.21.8"]
+deps.fabric_api = "0.136.1+1.21.8"
+deps.cloth_config = "19.0.147"
+deps.modmenu = "15.0.2"
+deps.biomesoplenty = "N0tADljF"
+deps.glitchcore = "UF5OQvYS"
+deps.terrablender = "nIklR4S9"
+
+["1.21.9"]
+mod.mc_compat = "1.21.9"
+mod.mc_releases = ["1.21.9"]
+deps.fabric_api = "0.134.1+1.21.9"
+deps.cloth_config = "20.0.149"
+deps.modmenu = "16.0.1"
+deps.biomesoplenty = "SjdHdvSk"
+deps.glitchcore = "rpxytW6G"
+deps.terrablender = "apNR53tH"
+
+["1.21.10"]
+mod.mc_compat = "1.21.10"
+mod.mc_releases = ["1.21.10"]
+deps.fabric_api = "0.138.4+1.21.10"
+deps.cloth_config = "20.0.149"
+deps.modmenu = "16.0.1"
+deps.biomesoplenty = "pzUNs4s7"
+deps.glitchcore = "f5GdOk9W"
+deps.terrablender = "kzbTmNaX"
+
+["1.21.11"]
+mod.mc_compat = "1.21.11"
+mod.mc_releases = ["1.21.11"]
+deps.fabric_api = "0.141.6+1.21.11"
+deps.cloth_config = "21.11.153"
+deps.modmenu = "17.0.1"
+deps.biomesoplenty = "JJKbM72H"
+deps.glitchcore = "CO7NeLTt"
+deps.terrablender = "chxo508B"

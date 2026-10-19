@@ -2,6 +2,7 @@ package biomeswerealreadyplenty.mixin.client;
 
 import biomeswerealreadyplenty.BwapClient;
 import net.minecraft.client.renderer.texture.SpriteContents;
+//? if <1.21.11
 import net.minecraft.client.renderer.texture.SpriteTicker;
 import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,13 +17,27 @@ public abstract class SpriteContentsMixin {
     @Shadow
     public abstract ResourceLocation name();
 
+    //? if >=1.21.11 {
+    /*@Inject(method = "isAnimated", at = @At("HEAD"), cancellable = true)
+    private void bwap$freezeAnomalyTexture(CallbackInfoReturnable<Boolean> cir) {
+        if (bwap$isFrozen()) {
+            cir.setReturnValue(false);
+        }
+    }
+    *///?} else {
     @Inject(method = "createTicker", at = @At("HEAD"), cancellable = true)
     private void bwap$freezeAnomalyTexture(CallbackInfoReturnable<SpriteTicker> cir) {
-        if (BwapClient.getConfig().getFreezeAnomalyTexture()) {
-            ResourceLocation name = this.name();
-            if (name.getNamespace().equals("biomesoplenty") && name.getPath().contains("anomaly")) {
-                cir.setReturnValue(null);
-            }
+        if (bwap$isFrozen()) {
+            cir.setReturnValue(null);
         }
+    }
+    //?}
+
+    private boolean bwap$isFrozen() {
+        if (!BwapClient.getConfig().getFreezeAnomalyTexture()) {
+            return false;
+        }
+        ResourceLocation name = this.name();
+        return name.getNamespace().equals("biomesoplenty") && name.getPath().contains("anomaly");
     }
 }
