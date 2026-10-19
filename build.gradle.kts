@@ -1,6 +1,5 @@
 plugins {
     id("dev.kikugie.loom-back-compat")
-    id("org.jetbrains.kotlin.jvm")
     id("com.modrinth.minotaur")
 }
 
@@ -19,8 +18,8 @@ repositories {
     maven("https://maven.shedaniel.me/")
     maven("https://maven.terraformersmc.com/releases/")
     exclusiveContent {
-        forRepository { maven("https://api.modrinth.com/maven") }
-        filter { includeGroup("maven.modrinth") }
+        forRepository { maven("https://maven.minecraftforge.net/") }
+        filter { includeGroup("com.github.glitchfiend") }
     }
 }
 
@@ -41,7 +40,6 @@ dependencies {
 
     modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
-    modImplementation("net.fabricmc:fabric-language-kotlin:${property("deps.fabric_kotlin")}")
     modImplementation("me.shedaniel.cloth:cloth-config-fabric:${property("deps.cloth_config")}") {
         exclude(group = "net.fabricmc.fabric-api")
     }
@@ -49,13 +47,10 @@ dependencies {
     modCompileOnly("com.terraformersmc:modmenu:${property("deps.modmenu")}")
     modLocalRuntime("com.terraformersmc:modmenu:${property("deps.modmenu")}")
 
-    modCompileOnly("maven.modrinth:biomes-o-plenty:${property("deps.biomesoplenty")}")
-    modLocalRuntime("maven.modrinth:biomes-o-plenty:${property("deps.biomesoplenty")}")
-    modLocalRuntime("maven.modrinth:glitchcore:${property("deps.glitchcore")}")
-    modLocalRuntime("maven.modrinth:terrablender:${property("deps.terrablender")}")
-    localRuntime("com.electronwill.night-config:core:${property("deps.nightconfig")}")
-    localRuntime("com.electronwill.night-config:toml:${property("deps.nightconfig")}")
-    localRuntime("net.jodah:typetools:${property("deps.typetools")}")
+    modCompileOnly("com.github.glitchfiend:BiomesOPlenty-fabric:${property("deps.biomesoplenty")}")
+    modLocalRuntime("com.github.glitchfiend:BiomesOPlenty-fabric:${property("deps.biomesoplenty")}")
+    modLocalRuntime("com.github.glitchfiend:GlitchCore-fabric:${property("deps.glitchcore")}")
+    modLocalRuntime("com.github.glitchfiend:TerraBlender-fabric:${property("deps.terrablender")}")
 }
 
 java {
@@ -94,7 +89,6 @@ modrinth {
     syncBodyFrom = providers.fileContents(rootProject.layout.projectDirectory.file("MODRINTH.md")).asText
     dependencies {
         required.project("fabric-api")
-        required.project("fabric-language-kotlin")
         required.project("cloth-config")
         optional.project("modmenu")
         optional.project("biomes-o-plenty")

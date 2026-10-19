@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0
+
+- Added support for 26.1.2, 26.2 and 26.3
+- Fabric Language Kotlin is no longer required
+
 ## 1.1.0
 
 - Added support for 1.20.1, 1.21 and 1.21.3 to 1.21.11

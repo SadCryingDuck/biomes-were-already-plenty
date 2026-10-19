@@ -2,7 +2,7 @@
 
 Client-side Fabric mod that stops the Anomaly block from Biomes O' Plenty flickering and tanking your FPS.
 
-> Available for 1.20.1 and 1.21 to 1.21.11. No 1.21.2 version since Biomes O' Plenty has no Fabric release for it
+> Available for 1.20.1, 1.21 to 1.21.11 and 26.1.2 to 26.3. No 1.21.2, 26.1 or 26.1.1 version since Biomes O' Plenty has no Fabric release for them
 
 ## Before / After
 
@@ -28,7 +28,6 @@ Via Mod Menu or `.minecraft/config/biomes-were-already-plenty.json`
 
 - [Fabric Loader](https://fabricmc.net)
 - [Fabric API](https://modrinth.com/mod/fabric-api)
-- [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin)
 - [Cloth Config](https://modrinth.com/mod/cloth-config)
 - [Mod Menu](https://modrinth.com/mod/modmenu) (optional)
 
