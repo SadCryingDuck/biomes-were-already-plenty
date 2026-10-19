@@ -29,6 +29,13 @@ jobs:
             21
             25
           distribution: 'temurin'
+      - name: setup gradle
+        uses: gradle/actions/setup-gradle@v6
+      - name: cache loom
+        uses: actions/cache@v6
+        with:
+          path: .gradle/loom-cache
+          key: loom-${{ hashFiles('stonecutter.properties.toml', 'settings.gradle.kts') }}
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
       - name: build

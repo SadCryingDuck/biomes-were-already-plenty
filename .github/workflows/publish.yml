@@ -33,6 +33,13 @@ jobs:
             21
             25
           distribution: 'temurin'
+      - name: setup gradle
+        uses: gradle/actions/setup-gradle@v6
+      - name: cache loom
+        uses: actions/cache@v6
+        with:
+          path: .gradle/loom-cache
+          key: loom-${{ hashFiles('stonecutter.properties.toml', 'settings.gradle.kts') }}
       - name: determine version type
         id: version_type
         run: |
@@ -54,12 +61,27 @@ jobs:
             -e "s#(^|[^!])(\[[^]]*\]\()([^):\#/][^):]*\))#\1\2https://github.com/$REPO/blob/$REF/\3#g" \
             README.md > MODRINTH.md
       - name: generate changelog
-        run: |
-          gh api repos/${{ github.repository }}/releases/generate-notes \
-            -f tag_name=${{ github.ref_name }} \
-            --jq '.body' > changelog.md
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          MOD_VERSION=$(grep '^mod.version' stonecutter.properties.toml | cut -d'"' -f2)
+          awk -v heading="## $MOD_VERSION" '
+            $0 == heading { found = 1; next }
+            found && /^## / { exit }
+            found { lines[++n] = $0 }
+            END {
+              first = 1; while (first <= n && lines[first] == "") first++
+              last = n; while (last >= first && lines[last] == "") last--
+              for (i = first; i <= last; i++) print lines[i]
+            }' CHANGELOG.md > release-notes.md
+          if [[ ! -s release-notes.md ]]; then
+            echo "::error::CHANGELOG.md has no section for $MOD_VERSION"
+            exit 1
+          fi
+          echo >> release-notes.md
+          gh api "repos/$REPO/releases/generate-notes" -f tag_name="$TAG" --jq '.body' >> release-notes.md
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
       - name: build
@@ -69,7 +91,7 @@ jobs:
         env:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           VERSION_TYPE: ${{ steps.version_type.outputs.type }}
-          CHANGELOG_FILE: changelog.md
+          CHANGELOG_FILE: release-notes.md
       - name: create github release
         uses: softprops/action-gh-release@v2
         env:
@@ -78,4 +100,4 @@ jobs:
           files: versions/*/build/libs/*.jar
           fail_on_unmatched_files: true
           prerelease: ${{ steps.version_type.outputs.type != 'release' }}
-          body_path: changelog.md
+          body_path: release-notes.md
