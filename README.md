@@ -6,9 +6,9 @@ Client-side Fabric mod that stops the Anomaly block from Biomes O' Plenty flicke
 
 ## Before / After
 
-| Before                                                                                          | After                                                                          |
-|-------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| ![Before - Anomaly block rapidly cycling through random block textures](screenshots/before.png) | ![After - Anomaly block showing its own static texture](screenshots/after.png) |
+| Before | After |
+|--------|-------|
+| ![Before - Anomaly block rapidly cycling through random block textures](screenshots/before.webp) | ![After - Anomaly block showing its own static texture](screenshots/after.webp) |
 
 ## What it does
 
@@ -28,6 +28,7 @@ Via Mod Menu or `.minecraft/config/biomes-were-already-plenty.json`
 
 - [Fabric Loader](https://fabricmc.net)
 - [Fabric API](https://modrinth.com/mod/fabric-api)
+- [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin)
 - [Cloth Config](https://modrinth.com/mod/cloth-config)
 - [Mod Menu](https://modrinth.com/mod/modmenu) (optional)
 
