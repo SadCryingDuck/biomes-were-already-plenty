@@ -25,7 +25,6 @@ loom {
             sourceSet sourceSets.client
         }
     }
-
 }
 
 dependencies {
@@ -57,9 +56,9 @@ tasks.withType(JavaCompile).configureEach {
     it.options.release = 21
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        jvmTarget = 21
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
     }
 }
 
@@ -82,14 +81,17 @@ modrinth {
     projectId = "d6x6KYTn"
     versionNumber = project.mod_version
     versionType = System.getenv("VERSION_TYPE") ?: "release"
+    changelog = providers.environmentVariable("CHANGELOG_FILE").map { file(it).text }.orElse("")
     uploadFile = tasks.remapJar
     gameVersions = [minecraft_version]
     loaders = ["fabric"]
-    syncBodyFrom = rootProject.file("README.md").text
+    def modrinthDesc = rootProject.file("MODRINTH.md")
+    syncBodyFrom = modrinthDesc.exists() ? modrinthDesc.text : rootProject.file("README.md").text
     dependencies {
         required.project "fabric-api"
         required.project "fabric-language-kotlin"
         required.project "cloth-config"
         optional.project "modmenu"
+        optional.project "biomes-o-plenty"
     }
 }

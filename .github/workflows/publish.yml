@@ -14,6 +14,17 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v6
+      - name: validate gradle wrapper
+        uses: gradle/actions/wrapper-validation@v6
+      - name: verify tag matches mod version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          MOD_VERSION=$(grep '^mod_version=' gradle.properties | cut -d= -f2)
+          if [[ "$TAG" != "v$MOD_VERSION" ]]; then
+            echo "::error::tag $TAG does not match mod_version $MOD_VERSION in gradle.properties"
+            exit 1
+          fi
       - name: setup jdk
         uses: actions/setup-java@v5
         with:
@@ -30,6 +41,22 @@ jobs:
           else
             echo "type=release" >> $GITHUB_OUTPUT
           fi
+      - name: generate modrinth description
+        env:
+          REPO: ${{ github.repository }}
+          REF: ${{ github.ref_name }}
+        run: |
+          sed -E \
+            -e "s#(!\[[^]]*\]\()([^):\#/][^):]*\))#\1https://raw.githubusercontent.com/$REPO/$REF/\2#g" \
+            -e "s#(^|[^!])(\[[^]]*\]\()([^):\#/][^):]*\))#\1\2https://github.com/$REPO/blob/$REF/\3#g" \
+            README.md > MODRINTH.md
+      - name: generate changelog
+        run: |
+          gh api repos/${{ github.repository }}/releases/generate-notes \
+            -f tag_name=${{ github.ref_name }} \
+            --jq '.body' > changelog.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
       - name: build
@@ -39,10 +66,13 @@ jobs:
         env:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           VERSION_TYPE: ${{ steps.version_type.outputs.type }}
+          CHANGELOG_FILE: changelog.md
       - name: create github release
         uses: softprops/action-gh-release@v2
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
         with:
           files: build/libs/*.jar
           fail_on_unmatched_files: true
           prerelease: ${{ steps.version_type.outputs.type != 'release' }}
-          generate_release_notes: true
+          body_path: changelog.md
