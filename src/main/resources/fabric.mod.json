@@ -7,6 +7,11 @@
   "authors": [
     "SadCryingDuck"
   ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/biomes-were-already-plenty",
+    "sources": "https://github.com/SadCryingDuck/biomes-were-already-plenty",
+    "issues": "https://github.com/SadCryingDuck/biomes-were-already-plenty/issues"
+  },
   "license": "GPL-3.0-only",
   "icon": "assets/biomes-were-already-plenty/icon.png",
   "environment": "client",
