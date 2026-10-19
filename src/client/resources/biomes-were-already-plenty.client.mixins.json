@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "biomeswerealreadyplenty.mixin.client",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_${java}",
   "client": [
     "AnomalyBlockEntityMixin",
     "SpriteContentsMixin"

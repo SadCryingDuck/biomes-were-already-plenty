@@ -34,8 +34,8 @@ Via Mod Menu or `.minecraft/config/biomes-were-already-plenty.json`
 
 ## Building
 
-Builds without any extra steps. If you want IDE support for BOP classes, drop a BOP fabric jar into `libs/`  it's
-gitignored and not needed to build anyway, it just stops the IDE from displaying evil red texts.
+Builds without any extra steps. BOP and Mod Menu are pulled in automatically for IDE support and for testing with
+`./gradlew :1.21.1:runClient`, so no more evil red texts.
 
 ## License
 
