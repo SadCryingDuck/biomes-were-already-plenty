@@ -3,6 +3,8 @@ plugins {
     id("com.modrinth.minotaur")
 }
 
+fun prop(key: String): String = sc.properties.get<String>(key)
+
 val minecraftVersion = sc.current.version
 val javaVersion = when {
     sc.current.parsed >= "26.1" -> 25
@@ -10,9 +12,9 @@ val javaVersion = when {
     else -> 17
 }
 
-version = "${property("mod.version")}+$minecraftVersion"
-group = property("mod.group").toString()
-base.archivesName = property("mod.id").toString()
+version = "${prop("mod.version")}+$minecraftVersion"
+group = prop("mod.group")
+base.archivesName = "${prop("mod.id")}-fabric"
 
 repositories {
     maven("https://maven.shedaniel.me/")
@@ -23,34 +25,28 @@ repositories {
     }
 }
 
-loom {
-    splitEnvironmentSourceSets()
-
-    mods {
-        register("biomes-were-already-plenty") {
-            sourceSet(sourceSets["main"])
-            sourceSet(sourceSets["client"])
-        }
-    }
+sourceSets.main {
+    java.exclude("**/neoforge/**", "**/forge/**")
+    resources.srcDir(rootProject.file("src/fabric/resources"))
 }
 
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
     loomx.applyMojangMappings()
 
-    modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
-    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${property("deps.cloth_config")}") {
+    modImplementation("net.fabricmc:fabric-loader:${prop("deps.fabric_loader")}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric_api")}")
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${prop("deps.cloth_config")}") {
         exclude(group = "net.fabricmc.fabric-api")
     }
 
-    modCompileOnly("com.terraformersmc:modmenu:${property("deps.modmenu")}")
-    modLocalRuntime("com.terraformersmc:modmenu:${property("deps.modmenu")}")
+    modCompileOnly("com.terraformersmc:modmenu:${prop("deps.modmenu")}") { isTransitive = false }
+    modLocalRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}") { isTransitive = false }
 
-    modCompileOnly("com.github.glitchfiend:BiomesOPlenty-fabric:${property("deps.biomesoplenty")}")
-    modLocalRuntime("com.github.glitchfiend:BiomesOPlenty-fabric:${property("deps.biomesoplenty")}")
-    modLocalRuntime("com.github.glitchfiend:GlitchCore-fabric:${property("deps.glitchcore")}")
-    modLocalRuntime("com.github.glitchfiend:TerraBlender-fabric:${property("deps.terrablender")}")
+    modCompileOnly("com.github.glitchfiend:BiomesOPlenty-fabric:${prop("deps.biomesoplenty")}")
+    modLocalRuntime("com.github.glitchfiend:BiomesOPlenty-fabric:${prop("deps.biomesoplenty")}")
+    modLocalRuntime("com.github.glitchfiend:GlitchCore-fabric:${prop("deps.glitchcore")}")
+    modLocalRuntime("com.github.glitchfiend:TerraBlender-fabric:${prop("deps.terrablender")}")
 }
 
 java {
@@ -60,7 +56,7 @@ java {
 
 val expansions = mapOf(
     "version" to version.toString(),
-    "minecraft" to property("mod.mc_compat").toString(),
+    "minecraft" to prop("mod.mc_compat"),
     "java" to javaVersion.toString(),
 )
 
@@ -80,7 +76,8 @@ tasks.jar {
 modrinth {
     token = providers.environmentVariable("MODRINTH_TOKEN")
     projectId = "d6x6KYTn"
-    versionNumber = version.toString()
+    versionNumber = "$version-fabric"
+    versionName = "$version-fabric"
     versionType = providers.environmentVariable("VERSION_TYPE").orElse("release")
     changelog = providers.environmentVariable("CHANGELOG_FILE").map { rootProject.file(it).readText() }.orElse("")
     file = loomx.modJar.flatMap { it.archiveFile }

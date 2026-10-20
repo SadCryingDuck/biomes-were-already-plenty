@@ -1,6 +1,6 @@
 package biomeswerealreadyplenty.mixin.client;
 
-import biomeswerealreadyplenty.BwapClient;
+import biomeswerealreadyplenty.Bwap;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -16,7 +16,7 @@ public class AnomalyBlockEntityMixin {
 
     @Inject(method = "getRenderState", at = @At("HEAD"), cancellable = true, require = 0, remap = false)
     private void bwap$returnStableState(CallbackInfoReturnable<BlockState> cir) {
-        if (BwapClient.getConfig().fixAnomalyFlickering) {
+        if (Bwap.config().fixAnomalyFlickering) {
             cir.setReturnValue(bwap$stableState(((BlockEntity) (Object) this).getBlockState()));
         }
     }

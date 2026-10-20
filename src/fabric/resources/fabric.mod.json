@@ -17,10 +17,10 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "biomeswerealreadyplenty.BwapClient"
+      "biomeswerealreadyplenty.fabric.BwapFabric"
     ],
     "modmenu": [
-      "biomeswerealreadyplenty.BwapModMenuIntegration"
+      "biomeswerealreadyplenty.fabric.BwapModMenu"
     ]
   },
   "mixins": [

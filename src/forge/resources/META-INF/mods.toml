@@ -1,0 +1,42 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "GPL-3.0-only"
+issueTrackerURL = "https://github.com/SadCryingDuck/biomes-were-already-plenty/issues"
+
+[[mods]]
+modId = "biomes_were_already_plenty"
+version = "${version}"
+displayName = "Biomes Were Already Plenty"
+displayURL = "https://modrinth.com/mod/biomes-were-already-plenty"
+logoFile = "assets/biomes-were-already-plenty/icon.png"
+authors = "SadCryingDuck"
+description = "Stops the Anomaly block from Biomes O' Plenty flickering and tanking your fps"
+displayTest = "IGNORE_ALL_VERSION"
+
+[[dependencies.biomes_were_already_plenty]]
+modId = "forge"
+mandatory = true
+versionRange = "[1,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.biomes_were_already_plenty]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft}"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.biomes_were_already_plenty]]
+modId = "cloth_config"
+mandatory = true
+versionRange = "[0,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.biomes_were_already_plenty]]
+modId = "biomesoplenty"
+mandatory = false
+versionRange = "[0,)"
+ordering = "NONE"
+side = "CLIENT"

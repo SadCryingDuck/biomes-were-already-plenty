@@ -1,6 +1,6 @@
 package biomeswerealreadyplenty.mixin.client;
 
-import biomeswerealreadyplenty.BwapClient;
+import biomeswerealreadyplenty.Bwap;
 //? if >=1.21.11
 //import biomeswerealreadyplenty.FrozenAnimation;
 import net.minecraft.client.renderer.texture.SpriteContents;
@@ -36,7 +36,7 @@ public abstract class SpriteContentsMixin {
     //?}
 
     private boolean bwap$isFrozen() {
-        if (!BwapClient.getConfig().freezeAnomalyTexture) {
+        if (!Bwap.config().freezeAnomalyTexture) {
             return false;
         }
         ResourceLocation name = this.name();
