@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0-beta.1
+
+- Added Neoforge support for 1.20.4, 1.20.6, 1.21 to 1.21.11 and 26.1.2 to 26.3
+- Added Forge support for 1.20.1, 1.20.6 and 1.21 to 1.21.4
+- Added Fabric support for 1.20.4 and 1.20.6
+
 ## 1.2.0
 
 - Added support for 26.1.2, 26.2 and 26.3

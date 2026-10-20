@@ -1,8 +1,14 @@
 # Biomes Were Already Plenty
 
-Client-side Fabric mod that stops the Anomaly block from Biomes O' Plenty flickering and tanking your FPS.
+Client-side mod that stops the Anomaly block from Biomes O' Plenty flickering and tanking your FPS.
 
-> Available for 1.20.1, 1.21 to 1.21.11 and 26.1.2 to 26.3. No 1.21.2, 26.1 or 26.1.1 version since Biomes O' Plenty has no Fabric release for them
+| Loader   | Minecraft versions                                      |
+|----------|---------------------------------------------------------|
+| Fabric   | 1.20.1, 1.20.4, 1.20.6, 1.21 to 1.21.11, 26.1.2 to 26.3 |
+| NeoForge | 1.20.4, 1.20.6, 1.21 to 1.21.11, 26.1.2 to 26.3         |
+| Forge    | 1.20.1, 1.20.6, 1.21 to 1.21.4                          |
+
+> No 1.21.2, 26.1 or 26.1.1 versions exist since Biomes O' Plenty has no release for them. Forge stops at 1.21.4 since cloth config has no forge release after it :sob:
 
 ## Before / After
 
@@ -12,12 +18,11 @@ Client-side Fabric mod that stops the Anomaly block from Biomes O' Plenty flicke
 
 ## What it does
 
-The Anomaly block rapidly cycles through random block textures when you get close to it, which tanks your FPS. This mod
-makes it show its own texture instead.
+The Anomaly block rapidly cycles through random block textures when you get close to it, which tanks your FPS. This mod makes it show its own texture instead.
 
 ## Config
 
-Via Mod Menu or `.minecraft/config/biomes-were-already-plenty.json`
+Via Mod Menu on Fabric, the mods menu screen on NeoForge and Forge, or `.minecraft/config/biomes-were-already-plenty.json` to change the settings through a textfile edit
 
 | Option                       | Default | Description                                            |
 |------------------------------|---------|--------------------------------------------------------|
@@ -26,15 +31,13 @@ Via Mod Menu or `.minecraft/config/biomes-were-already-plenty.json`
 
 ## Dependencies
 
-- [Fabric Loader](https://fabricmc.net)
-- [Fabric API](https://modrinth.com/mod/fabric-api)
 - [Cloth Config](https://modrinth.com/mod/cloth-config)
-- [Mod Menu](https://modrinth.com/mod/modmenu) (optional)
+- [Fabric API](https://modrinth.com/mod/fabric-api) (Fabric only)
+- [Mod Menu](https://modrinth.com/mod/modmenu) (Fabric only, optional)
 
 ## Building
 
-Builds without any extra steps. BOP and Mod Menu are pulled in automatically for IDE support and for testing with
-`./gradlew :1.21.1:runClient`, so no more evil red texts.
+Builds without any extra steps. BOP and Mod Menu are pulled in automatically for IDE support and for testing with `./gradlew :1.21.1-fabric:runClient` (or any other `<version>-<loader>`), so no more evil red texts.
 
 ## License
 
