@@ -33,11 +33,13 @@ jobs:
         uses: gradle/actions/setup-gradle@v6
         with:
           cache-provider: basic
-      - name: cache loom
+      - name: cache minecraft
         uses: actions/cache@v6
         with:
-          path: .gradle/loom-cache
-          key: loom-${{ hashFiles('stonecutter.properties.toml', 'settings.gradle.kts') }}
+          path: |
+            .gradle/loom-cache
+            .gradle/mavenizer
+          key: minecraft-${{ hashFiles('stonecutter.properties.toml', 'settings.gradle.kts') }}
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
       - name: build
