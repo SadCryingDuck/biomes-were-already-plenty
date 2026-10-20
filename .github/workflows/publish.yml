@@ -97,9 +97,7 @@ jobs:
           VERSION_TYPE: ${{ steps.version_type.outputs.type }}
           CHANGELOG_FILE: release-notes.md
       - name: create github release
-        uses: softprops/action-gh-release@v2
-        env:
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+        uses: softprops/action-gh-release@v3
         with:
           files: versions/*/build/libs/*.jar
           fail_on_unmatched_files: true
